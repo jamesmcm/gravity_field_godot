@@ -1,0 +1,91 @@
+[gd_scene load_steps=7 format=3 uid="uid://bqfyqte3b0eeu"]
+
+[ext_resource type="Script" path="res://Ellipse.gd" id="1_g8w6a"]
+[ext_resource type="Script" path="res://game.gd" id="1_thcd8"]
+[ext_resource type="Script" path="res://CircleSprite.gd" id="2_863oq"]
+[ext_resource type="Script" path="res://FixedBody.gd" id="2_chw6s"]
+[ext_resource type="Script" path="res://CircleCollider.gd" id="3_0yljs"]
+[ext_resource type="Script" path="res://OrbitingBody.gd" id="6_g4meq"]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_thcd8")
+
+[node name="FixedBody" type="Area2D" parent="." groups=["bodies"]]
+position = Vector2(900, 400)
+script = ExtResource("2_chw6s")
+radius = 30
+mass = 500000
+
+[node name="CircleSprite" type="Sprite2D" parent="FixedBody"]
+script = ExtResource("2_863oq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FixedBody"]
+script = ExtResource("3_0yljs")
+
+[node name="OrbitingBody" type="Area2D" parent="." node_paths=PackedStringArray("orbit_source") groups=["bodies"]]
+script = ExtResource("6_g4meq")
+mass = 10000
+orbit_source = NodePath("../FixedBody")
+e = 0.675
+angle_offset = 3.545
+
+[node name="Orbit" type="Line2D" parent="OrbitingBody"]
+top_level = true
+position = Vector2(300, 300)
+width = 2.0
+default_color = Color(0.0588235, 0.0941176, 1, 1)
+script = ExtResource("1_g8w6a")
+
+[node name="CircleSprite" type="Sprite2D" parent="OrbitingBody"]
+script = ExtResource("2_863oq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OrbitingBody"]
+script = ExtResource("3_0yljs")
+
+[node name="OrbitingMoon" type="Area2D" parent="." node_paths=PackedStringArray("orbit_source") groups=["bodies"]]
+script = ExtResource("6_g4meq")
+radius = 4
+colour = Color(0.886275, 0.8, 0.843137, 1)
+mass = 100
+orbit_source = NodePath("../OrbitingBody")
+e = 0.103
+a = 16.326
+velocity = 20
+angle_offset = 3.545
+
+[node name="Orbit" type="Line2D" parent="OrbitingMoon"]
+visible = false
+top_level = true
+position = Vector2(300, 300)
+width = 1.0
+default_color = Color(0.921569, 0.870588, 0.921569, 1)
+script = ExtResource("1_g8w6a")
+
+[node name="CircleSprite" type="Sprite2D" parent="OrbitingMoon"]
+script = ExtResource("2_863oq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OrbitingMoon"]
+script = ExtResource("3_0yljs")
+
+[node name="OrbitingBody2" type="Area2D" parent="." node_paths=PackedStringArray("orbit_source") groups=["bodies"]]
+script = ExtResource("6_g4meq")
+radius = 15
+colour = Color(0.372549, 0.568627, 0, 1)
+mass = 50000
+orbit_source = NodePath("../FixedBody")
+e = 0.116
+a = 378.283
+angle_offset = 2.361
+
+[node name="Orbit" type="Line2D" parent="OrbitingBody2"]
+top_level = true
+position = Vector2(300, 300)
+width = 2.0
+default_color = Color(0.0392157, 0.427451, 0, 1)
+script = ExtResource("1_g8w6a")
+
+[node name="CircleSprite" type="Sprite2D" parent="OrbitingBody2"]
+script = ExtResource("2_863oq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OrbitingBody2"]
+script = ExtResource("3_0yljs")
