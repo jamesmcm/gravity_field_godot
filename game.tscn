@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bqfyqte3b0eeu"]
+[gd_scene load_steps=8 format=3 uid="uid://bqfyqte3b0eeu"]
 
 [ext_resource type="Script" path="res://Ellipse.gd" id="1_g8w6a"]
 [ext_resource type="Script" path="res://game.gd" id="1_thcd8"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://FixedBody.gd" id="2_chw6s"]
 [ext_resource type="Script" path="res://CircleCollider.gd" id="3_0yljs"]
 [ext_resource type="Script" path="res://OrbitingBody.gd" id="6_g4meq"]
+[ext_resource type="Script" path="res://MovedMass.gd" id="7_3b4qo"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_thcd8")
@@ -71,7 +72,7 @@ script = ExtResource("3_0yljs")
 script = ExtResource("6_g4meq")
 radius = 15
 colour = Color(0.372549, 0.568627, 0, 1)
-mass = 50000
+mass = 80000
 orbit_source = NodePath("../FixedBody")
 e = 0.116
 a = 378.283
@@ -88,4 +89,15 @@ script = ExtResource("1_g8w6a")
 script = ExtResource("2_863oq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OrbitingBody2"]
+script = ExtResource("3_0yljs")
+
+[node name="MovedMass" type="RigidBody2D" parent="."]
+position = Vector2(800, 200)
+mass = 100.0
+script = ExtResource("7_3b4qo")
+
+[node name="CircleSprite" type="Sprite2D" parent="MovedMass"]
+script = ExtResource("2_863oq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MovedMass"]
 script = ExtResource("3_0yljs")

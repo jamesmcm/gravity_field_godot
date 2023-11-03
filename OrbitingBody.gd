@@ -23,7 +23,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	# TODO: smooth animation
-	print(self.position)
+	# print(self.position)
 	var dtheta = (2.0 * velocity) / self.position.distance_squared_to(self.orbit_source.position)
 	self.theta += dtheta
 	
