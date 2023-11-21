@@ -92,8 +92,12 @@ script = ExtResource("2_863oq")
 script = ExtResource("3_0yljs")
 
 [node name="MovedMass" type="RigidBody2D" parent="."]
+visible = false
 position = Vector2(800, 200)
-mass = 100.0
+mass = 10.0
+inertia = 10.0
+gravity_scale = 0.0
+can_sleep = false
 script = ExtResource("7_3b4qo")
 
 [node name="CircleSprite" type="Sprite2D" parent="MovedMass"]

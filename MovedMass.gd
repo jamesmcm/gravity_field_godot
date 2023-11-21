@@ -14,9 +14,9 @@ func _process(delta):
 	var grid_size = self.get_parent().grid_size
 	
 	var index = ((self.position.y / grid_step_size) * grid_size) + (self.position.x / grid_step_size)
-	print(index)
-	print(self.get_parent().points[int(index)] * self.mass)
+	# print(index)
+	# print(self.get_parent().points[int(index)] * self.mass)
 	var force = -1.0*self.get_parent().points[int(index)] * self.mass
-	print(force)
-	self.apply_impulse(-1.0*self.get_parent().points[int(index)] * self.mass)
+	# print(force)
+	self.apply_impulse(force)
 	pass
